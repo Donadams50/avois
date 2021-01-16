@@ -27,6 +27,7 @@ db.sequelize = sequelize;
 db.profiles = require("../members/members.model.js")(sequelize, Sequelize);
 db.member_auths = require("../members/auth.model.js")(sequelize, Sequelize);
 db.products = require("../product/product.model.js")(sequelize, Sequelize);
+db.carts = require("../cart/cart.model.js")(sequelize, Sequelize);
 module.exports = db;
 //Don’t forget to call sync() method in server.js
 

@@ -2,26 +2,10 @@ module.exports = app => {
     const carts = require("../cart/cart.controller.js");
 
   
-    // Create a new Tutorial
-   // app.post("/user", members.create);
-  
-    // Retrieve all Tutorials
-    // app.get("/", tutorials.findAll);
-  
-    // // Retrieve all published Tutorials
-    // app.get("/published", tutorials.findAllPublished);
-  
-    // // Retrieve a single Tutorial with id
-    // app.get("/:id", tutorials.findOne);
-  
-    // // Update a Tutorial with id
-    // app.put("/:id", tutorials.update);
-  
-    // // Delete a Tutorial with id
-    // app.delete("/:id", tutorials.delete);
-  
-    // // Delete all Tutorials
-    // app.delete("/", tutorials.deleteAll);
+     app.post("/cart",  carts.addToCart);
+     app.get("/cart",     carts.findCartByUserId);
+     app.get("/cartcount",     carts.countCart); 
+    //  app.delete("/cart/:id",  verifyToken,  cart.deleteCart);
   
 
   };

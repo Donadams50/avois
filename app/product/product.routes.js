@@ -9,7 +9,7 @@ module.exports = app => {
     app.get("/product", products.findAllProduct);
   
     // Update  product
-    app.put("/product", products.updateProduct);
+    app.put("/product/:id", products.updateProduct);
   
 
   };
