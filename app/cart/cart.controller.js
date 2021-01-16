@@ -55,7 +55,12 @@ const {   productId, productName ,productPrice, quantitySelected } = req.body;
 exports.findCartByUserId = async(req, res) => {
     try{
          userid = req.user.id
-        const findUserCart = await Carts.find({userId: userid} )
+        const findUserCart = await Carts.findAll({
+            where: {userId: userid},
+            include: [{
+            model: Product,
+            where: {id: productId}
+           }] })
         res.status(200).send(findUserCart)
            
     }catch(err){
