@@ -3,9 +3,9 @@ const dotenv=require('dotenv');
 
 dotenv.config();
 
-exports.signToken= (userId,  userEmail, fName, lName)=> {
+exports.signToken= (userId,   Email, FirstName, LastName)=> {
     const key = process.env.SECRET_KEY;
-    const token = jwt.sign({ id: userId,  email:userEmail,  firstName: fName, lastName: lName}, key, { expiresIn: '1h' });
+    const token = jwt.sign({ id: userId,  email:Email,  firstName: FirstName, lastName: LastName}, key, { expiresIn: '1h' });
     return token;
   }
 
