@@ -1,3 +1,4 @@
+Cart = require("../cart/cart.model");
 module.exports = (sequelize, Sequelize) => {
     const Product = sequelize.define("product", {
         product_name: {
@@ -16,6 +17,6 @@ module.exports = (sequelize, Sequelize) => {
         }
     },
     });
-  
+   
     return Product;
   };

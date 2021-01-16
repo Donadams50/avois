@@ -3,6 +3,7 @@ const Products = db.products;
 const Op = db.Sequelize.Op;
 const uuid = require('uuid')
 
+
 // function to create new product
 exports.createProduct = async(req,res)=>{
     if (!req.body){

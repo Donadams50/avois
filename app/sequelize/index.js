@@ -28,6 +28,16 @@ db.profiles = require("../members/members.model.js")(sequelize, Sequelize);
 db.member_auths = require("../members/auth.model.js")(sequelize, Sequelize);
 db.products = require("../product/product.model.js")(sequelize, Sequelize);
 db.carts = require("../cart/cart.model.js")(sequelize, Sequelize);
+
+db.products.hasMany(db.carts, {
+  foreignKey: 'productId',
+  as:"product"
+})
+
+db.carts.belongsTo(db.products, {   
+  foreignKey: 'productId',
+  as:"product"
+})
 module.exports = db;
 //Don’t forget to call sync() method in server.js
 
