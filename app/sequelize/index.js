@@ -20,7 +20,7 @@ const sequelize = new Sequelize(process.env.database, process.env.user, process.
 
 const db = {};
 
-db.Sequelize = Sequelize;
+db.Sequelize = Sequelize; 
 db.sequelize = sequelize;
 
 
