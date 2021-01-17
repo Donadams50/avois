@@ -53,12 +53,13 @@ exports.addVariant = async(req,res)=>{
     if (!req.body){
         res.status(400).send({message:"Content cannot be empty"});
     }
+    console.log(JSON.parse(req.body.product_variety))
   console.log(req.file)
 
-const {  product_varieties } = req.body;
+    const product_variety = JSON.parse(req.body.product_variety)
   
-    if ( product_varieties  ){
-        if (  product_varieties.length < 1 ){
+    if ( product_variety ){
+        if (  product_variety ==={} ){
             res.status(400).send({
                 message:"Incorrect entry format"
             });
@@ -68,13 +69,15 @@ const {  product_varieties } = req.body;
         //  product_varieties.images = urls
              const id = req.params.id;
              const  findProduct =await Products.findOne({where: {id:id}})
-             const old_variant = findProduct.product_varieties;
-             const new_variant = old_variant.push(product_varieties)
-
+            
+             const old_variant = JSON.parse(findProduct.dataValues.product_varieties);
+                     product_variety.images[0] = req.file.url    
+                     old_variant.push(product_variety)
+            
             const product = {
-                            product_name : findProduct.product_name,
-                            product_description: findProduct.product_description ,
-                            product_varieties: new_variant
+                            product_name : findProduct.dataValues.product_name,
+                            product_description: findProduct.dataValues.product_description ,
+                            product_varieties: old_variant
                            }
            
                try{         
