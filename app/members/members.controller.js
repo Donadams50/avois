@@ -2,8 +2,8 @@ const db = require("../sequelize");
 const Members = db.profiles;
 const Auth = db.member_auths;
 const Op = db.Sequelize.Op;
-const passwordUtils =require('../Helpers/passwordUtils');
-const jwtTokenUtils = require('../Helpers/jwtTokenUtils')
+const passwordUtils =require('../helpers/passwordUtils');
+const jwtTokenUtils = require('../helpers/jwtTokenUtils')
 const { signToken } = jwtTokenUtils;
 const uuid = require('uuid')
 
