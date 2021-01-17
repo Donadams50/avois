@@ -19,6 +19,8 @@ const {   product_name, product_description ,product_varieties } = req.body;
                 message:"Incorrect entry format"
             });
      }else{      
+
+
             
             const product = {
                             product_name : req.body.product_name,
@@ -38,6 +40,55 @@ const {   product_name, product_description ,product_varieties } = req.body;
               }catch(err){
                 console.log(err)
                 res.status(500).send({message:"Error while creating product "})
+            }
+        }
+    }else{
+        res.status(400).send({
+            message:"Incorrect entry format"
+        });
+    }
+}
+
+exports.addVariant = async(req,res)=>{
+    if (!req.body){
+        res.status(400).send({message:"Content cannot be empty"});
+    }
+  console.log(req.file)
+
+const {  product_varieties } = req.body;
+  
+    if ( product_varieties  ){
+        if (  product_varieties.length < 1 ){
+            res.status(400).send({
+                message:"Incorrect entry format"
+            });
+     }else{      
+      //  const urls = []
+        
+        //  product_varieties.images = urls
+             const id = req.params.id;
+             const  findProduct =await Products.findOne({where: {id:id}})
+             const old_variant = findProduct.product_varieties;
+             const new_variant = old_variant.push(product_varieties)
+
+            const product = {
+                            product_name : findProduct.product_name,
+                            product_description: findProduct.product_description ,
+                            product_varieties: new_variant
+                           }
+           
+               try{         
+                updateproduct =await Products.update(product, { where: { id: id} })
+                            if (updateproduct){
+                                res.status(201).send({message:"Variant added succesfully"})
+                            }else{
+                                res.status(400).send({message:"Error while adding varaint "})  
+                            }                
+                           
+                
+              }catch(err){
+                console.log(err)
+                res.status(500).send({message:"Error while adding variant "})
             }
         }
     }else{

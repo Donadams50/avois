@@ -109,8 +109,8 @@ exports.deleteCart = async (req, res) => {
 exports.checkOut = async (req, res) => {
     try{
             const id = req.user.id;
-            
-            const checkOut = await Carts.update({ isCheckedOut : true },{where :{ userId: id}})
+           
+         const checkOut = await Carts.update({ isCheckedOut : true } , {where :{ userId: id}})
 
             res.status(200).send("Checked out succesfully")
            
