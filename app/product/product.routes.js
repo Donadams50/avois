@@ -10,6 +10,7 @@ module.exports = app => {
   
 
     app.post("/product/variant/:id", verifyToken, upload.single("files"), products.addVariant);
+    
     // Retrieve all product
     app.get("/product",   verifyToken, products.findAllProduct);
   
